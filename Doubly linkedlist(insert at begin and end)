@@ -1,0 +1,66 @@
+class Node {
+    int data;
+    Node next, prev;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+        this.prev = null;
+    }
+}
+
+class DoublyLinkedList {
+    Node head, tail;
+
+    public DoublyLinkedList() {
+        head = null;
+        tail = null;
+    }
+    public void insertAtBeginning(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {  // If the list is empty, both head and tail will point to the new node
+            head = tail = newNode;
+        } else {
+            newNode.next = head;     
+            head.prev = newNode;      
+            head = newNode;          
+        }
+        System.out.println(data + " inserted at the beginning.");
+    }
+
+    // Insert at the end of the doubly linked list
+    public void insertAtEnd(int data) {
+        Node newNode = new Node(data);
+        if (tail == null) {  // If the list is empty, both head and tail will point to the new node
+            head = tail = newNode;
+        } else {
+            tail.next = newNode;   
+            newNode.prev = tail;   
+            tail = newNode;        
+        }
+        System.out.println(data + " inserted at the end.");
+    }
+    public void display() {
+        Node temp = head;
+        if (temp == null) {
+            System.out.println("List is empty.");
+            return;
+        }
+        System.out.print("Doubly Linked List: ");
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+      }
+    }
+public class Main {
+    public static void main(String[] args) {
+        DoublyLinkedList list = new DoublyLinkedList();
+        list.insertAtBeginning(10);
+        list.insertAtBeginning(20);
+        list.insertAtEnd(30);
+        list.insertAtEnd(40);
+        list.display();
+    }
+}
